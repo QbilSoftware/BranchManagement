@@ -10,7 +10,7 @@ class Utility
             return 1;
         }
 
-        if (preg_match("'^QbilTrade/([a-z0-9A-Z]+)([0-9]{4})$'", $branch, $matches)) {
+        if (preg_match("'^(?:QbilTrade/|)([a-z0-9A-Z]+)([0-9]{4})$'", $branch, $matches)) {
             $number = (intval($matches[2]) - 2011) * 10;
 
             return $number + array_search($matches[1], ['winter', 'voorjaar', 'spring', 'zomer', 'summer', 'najaar', 'autumn']);
