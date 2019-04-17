@@ -1,5 +1,5 @@
 {
-  "name": "qbil/branch-management",
+  "name": "qbil-software/branch-management",
   "description": "Package containing common functions for branch management",
   "type": "library",
   "autoload": {
