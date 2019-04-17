@@ -4,16 +4,14 @@ namespace Qbil\BranchManagement;
 
 class Utility
 {
+    const RELEASE_SEASONS = ['winter', 'voorjaar', 'spring', 'zomer', 'summer', 'najaar', 'autumn'];
+    
     public static function branchToNumber($branch)
     {
-        if ('Versie3' == $branch) {
-            return 1;
-        }
-
         if (preg_match("'^(?:QbilTrade/|)([a-z0-9A-Z]+)([0-9]{4})$'", $branch, $matches)) {
             $number = (intval($matches[2]) - 2011) * 10;
 
-            return $number + array_search($matches[1], ['winter', 'voorjaar', 'spring', 'zomer', 'summer', 'najaar', 'autumn']);
+            return $number + array_search($matches[1], self::RELEASE_SEASONS);
         }
 
         if ('QbilTrade/Development' == $branch) {
@@ -30,6 +28,26 @@ class Utility
 
         return 600;
     }
+
+    public static function branchFromNumber($number)
+    {
+        if (500 == $number) {
+            return 'QbilTrade/Development';
+        }
+
+        return self::RELEASE_SEASONS[substr($number, -1)].(($number / 10) + 2011);
+    }
+
+    public static function branchFromAppVersion($version)
+    {
+        return self::branchFromNumber(preg_replace('/^v(\d+)@(\d+)$/', '$1', $version));
+    }
+
+    public static function revisionFromAppVersion($version)
+    {
+        return preg_replace('/^v(\d+)@(\d+)$/', '$2', $version);
+    }
+
 
     public static function compareBranches($a, $b)
     {
