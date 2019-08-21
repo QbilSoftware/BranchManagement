@@ -18,6 +18,10 @@ class Utility
             return 500;
         }
 
+        if ('master' == $branch) {
+            return 999;
+        }
+
         if (preg_match("'^QbilTrade/Development'", $branch)) {
             return 501;
         }
@@ -35,19 +39,12 @@ class Utility
             return 'QbilTrade/Development';
         }
 
+        if (999 == $number) {
+            return 'master';
+        }
+
         return self::RELEASE_SEASONS[substr($number, -1)].(($number / 10) + 2011);
     }
-
-    public static function branchFromAppVersion($version)
-    {
-        return self::branchFromNumber(preg_replace('/^v(\d+)@(\d+)$/', '$1', $version));
-    }
-
-    public static function revisionFromAppVersion($version)
-    {
-        return preg_replace('/^v(\d+)@(\d+)$/', '$2', $version);
-    }
-
 
     public static function compareBranches($a, $b)
     {
