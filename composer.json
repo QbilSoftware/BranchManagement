@@ -1,19 +1,26 @@
 {
-  "name": "qbil-software/branch-management",
-  "description": "Package containing common functions for branch management",
-  "type": "library",
-  "autoload": {
-    "psr-4": {
-      "Qbil\\BranchManagement\\": ""
+    "name": "qbil-software/control",
+    "description": "Package to manage server and control panel of Qbil Trade",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Qbil\\Control\\": "src"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Faizan Akram",
+            "email": "hello@faizanakram.me"
+        }
+    ],
+    "minimum-stability": "beta",
+    "require": {
+        "ext-ftp": "*",
+        "ext-mysqli": "*",
+        "ext-posix": "*",
+        "phpseclib/mcrypt_compat": "^1.0",
+        "symfony/process": "^4.3",
+        "ckdarby/php-uptimerobot": "^0.2.0"
     }
-  },
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Faizan Akram",
-      "email": "hello@faizanakram.me"
-    }
-  ],
-  "minimum-stability": "dev",
-  "require": {}
 }
